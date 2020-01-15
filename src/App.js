@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
+import Player from "./Player";
 
 const App = () => {
   useEffect(() => {
     getStats();
   }, []);
+
+  const [p1stats, setP1stats] = useState([]);
 
   const getStats = async () => {
     //uses backticks in the line below
@@ -15,8 +18,9 @@ const App = () => {
     //setRecipes(data.hits);
     //console.log(data);
 
-    const fieldgoalsm = data.data.map(data => {
-      console.log(data.fgm);
+    const fieldgoalsm = data.data.map(stats => {
+      console.log(stats.fgm, stats.ftm);
+      setP1stats(stats);
     });
   };
 
@@ -29,11 +33,14 @@ const App = () => {
         <input className="p2-searchbar" value="Enter Player Name"></input>
       </form>
       <button className="compare-button">Compare</button>
-      <div className="p1-stats">
+      <div className="categories">
         <h1>Name</h1>
         <h1>Points</h1>
         <h1>Rebounds</h1>
         <h1>Assists</h1>
+      </div>
+      <div className="p1-stats">
+        <Player stats={p1stats}></Player>
       </div>
     </div>
   );

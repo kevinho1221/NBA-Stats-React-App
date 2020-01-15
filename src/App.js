@@ -8,6 +8,9 @@ const App = () => {
   }, []);
 
   const [p1stats, setP1stats] = useState([]);
+  const [categories] = [
+    { player_id: "Name", pts: "Points", reb: "Rebounds", ast: "Assists" }
+  ];
 
   const getStats = async () => {
     //uses backticks in the line below
@@ -33,14 +36,17 @@ const App = () => {
         <input className="p2-searchbar" value="Enter Player Name"></input>
       </form>
       <button className="compare-button">Compare</button>
-      <div className="categories">
-        <h1>Name</h1>
-        <h1>Points</h1>
-        <h1>Rebounds</h1>
-        <h1>Assists</h1>
-      </div>
       <div className="p1-stats">
         <Player stats={p1stats}></Player>
+      </div>
+      <div className="categories">
+        <Player stats={categories}></Player>
+      </div>
+      <div className="p2-stats">
+        <h1>100</h1>
+        <h1>100</h1>
+        <h1>100</h1>
+        <h1>100</h1>
       </div>
     </div>
   );

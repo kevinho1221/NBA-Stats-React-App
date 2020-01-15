@@ -47,3 +47,36 @@
   padding: 10px 20px;
   border-radius: 12px;
 }
+
+.p1-stats {
+  width: 33%;
+  background-color: green;
+  display: flex;
+  min-height: 30vh;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  flex-direction: column;
+}
+
+.categories {
+  background-color: red;
+  width: 33%;
+  display: flex;
+  min-height: 30vh;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  flex-direction: column;
+}
+
+.p2-stats {
+  background-color: lightblue;
+  width: 33%;
+  display: flex;
+  min-height: 30vh;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  flex-direction: column;
+}

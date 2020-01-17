@@ -8,7 +8,7 @@
   );
 }
 
-.p1-form {
+.p-form {
   min-height: 10vh;
   display: flex;
   align-items: center;
@@ -17,22 +17,7 @@
   float: left;
 }
 
-.p2-form {
-  min-height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
-  float: left;
-}
-
-.p1-searchbar {
-  width: 20%;
-  padding: 10px;
-  border-color: black;
-}
-
-.p2-searchbar {
+.p-searchbar {
   width: 20%;
   padding: 10px;
   border-color: black;

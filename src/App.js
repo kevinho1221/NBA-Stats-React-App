@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Player from "./Player";
+import SearchBar from "./Search/searchbar";
 
 const App = () => {
   useEffect(() => {
@@ -29,12 +30,12 @@ const App = () => {
 
   return (
     <div className="App">
-      <form className="p1-form">
-        <input className="p1-searchbar" value="Enter Player Name"></input>
-      </form>
-      <form className="p2-form">
-        <input className="p2-searchbar" value="Enter Player Name"></input>
-      </form>
+      <div className="p1-searchbar">
+        <SearchBar />
+      </div>
+      <div className="p2-searchbar">
+        <SearchBar />
+      </div>
       <button className="compare-button">Compare</button>
       <div className="p1-stats">
         <Player stats={p1stats}></Player>

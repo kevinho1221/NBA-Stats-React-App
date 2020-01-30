@@ -33,9 +33,11 @@ const App = () => {
       <div className="p1-searchbar">
         <SearchBar />
       </div>
+
       <div className="p2-searchbar">
         <SearchBar />
       </div>
+
       <button className="compare-button">Compare</button>
       <div className="p1-stats">
         <Player stats={p1stats}></Player>

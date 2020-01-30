@@ -8,21 +8,6 @@
   );
 }
 
-.p-form {
-  min-height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50%;
-  float: left;
-}
-
-.p-searchbar {
-  width: 20%;
-  padding: 10px;
-  border-color: black;
-}
-
 .compare-button {
   margin: 30px;
   background: lightblue;
@@ -37,7 +22,7 @@
   width: 33%;
   background-color: green;
   display: flex;
-  min-height: 30vh;
+  min-height: 50vh;
   align-items: center;
   justify-content: center;
   float: left;
@@ -48,7 +33,7 @@
   background-color: red;
   width: 33%;
   display: flex;
-  min-height: 30vh;
+  min-height: 50vh;
   align-items: center;
   justify-content: center;
   float: left;
@@ -59,9 +44,41 @@
   background-color: lightblue;
   width: 33%;
   display: flex;
-  min-height: 30vh;
+  min-height: 50vh;
   align-items: center;
   justify-content: center;
   float: left;
   flex-direction: column;
+}
+
+.p-form {
+  min-height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  float: left;
+  background-color: red;
+}
+
+.p-searchbar {
+  width: 20%;
+  padding: 10px;
+  border-color: black;
+}
+
+.p-suggestions {
+  min-height: 50vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: purple;
+}
+
+.p1-searchsection {
+  background-color: green;
+  float: left;
+  min-height: 10vh;
+  width: 50%;
 }

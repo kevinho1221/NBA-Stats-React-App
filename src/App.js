@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import Player from "./Player";
 import SearchBar from "./Search/searchbar";
+import Suggestions from "./Search/suggestions";
 
 const App = () => {
   useEffect(() => {
@@ -37,7 +38,6 @@ const App = () => {
       <div className="p2-searchbar">
         <SearchBar />
       </div>
-
       <button className="compare-button">Compare</button>
       <div className="p1-stats">
         <Player stats={p1stats}></Player>

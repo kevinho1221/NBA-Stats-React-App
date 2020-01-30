@@ -5,11 +5,11 @@ class searchbar extends React.Component {
   state = {
     value: "",
     suggestions: [],
-    sugg1: [{ player_id: 0, first_name: "A" }],
-    sugg2: [{ player_id: 1, first_name: "B" }],
-    sugg3: [{ player_id: 2, first_name: "C" }],
-    sugg4: [{ player_id: 3, first_name: "D" }],
-    sugg5: [{ player_id: 4, first_name: "E" }]
+    sugg1: [],
+    sugg2: [],
+    sugg3: [],
+    sugg4: [],
+    sugg5: []
   };
 
   /*async getAllNames() {
@@ -43,6 +43,11 @@ class searchbar extends React.Component {
     const { value } = this.state;
     console.log(this.state.suggestions);
     if (value === "" || value.length < 3) {
+      this.setState({ sugg1: [] });
+      this.setState({ sugg2: [] });
+      this.setState({ sugg3: [] });
+      this.setState({ sugg4: [] });
+      this.setState({ sugg5: [] });
       return;
     }
     const response = await fetch(
@@ -60,46 +65,39 @@ class searchbar extends React.Component {
 
   checkSuggestionLength = data => {
     console.log(data.meta.total_count);
-    if (data.meta.total_count === 4) {
+    if (data.meta.total_count >= 5) {
       this.setState({ sugg1: this.state.suggestions.data[0] });
       this.setState({ sugg2: this.state.suggestions.data[1] });
       this.setState({ sugg3: this.state.suggestions.data[2] });
       this.setState({ sugg4: this.state.suggestions.data[3] });
-      this.setState({ sugg5: [{ player_id: 4, first_name: "E" }] });
+      this.setState({ sugg5: this.state.suggestions.data[4] });
+    } else if (data.meta.total_count === 4) {
+      this.setState({ sugg1: this.state.suggestions.data[0] });
+      this.setState({ sugg2: this.state.suggestions.data[1] });
+      this.setState({ sugg3: this.state.suggestions.data[2] });
+      this.setState({ sugg4: this.state.suggestions.data[3] });
+      this.setState({ sugg5: [] });
     } else if (data.meta.total_count === 3) {
       this.setState({ sugg1: this.state.suggestions.data[0] });
       this.setState({ sugg2: this.state.suggestions.data[1] });
       this.setState({ sugg3: this.state.suggestions.data[2] });
-      this.setState({ sugg4: [{ player_id: 4, first_name: "D" }] });
-      this.setState({ sugg5: [{ player_id: 5, first_name: "E" }] });
+      this.setState({ sugg4: [] });
+      this.setState({ sugg5: [] });
     } else if (data.meta.total_count === 2) {
       this.setState({ sugg1: this.state.suggestions.data[0] });
       this.setState({ sugg2: this.state.suggestions.data[1] });
-      this.setState({ sugg3: [{ player_id: 3, first_name: "C" }] });
-      this.setState({ sugg4: [{ player_id: 4, first_name: "D" }] });
-      this.setState({ sugg5: [{ player_id: 5, first_name: "E" }] });
+      this.setState({ sugg3: [] });
+      this.setState({ sugg4: [] });
+      this.setState({ sugg5: [] });
     } else if (data.meta.total_count === 1) {
-      console.log("HELLO");
       this.setState({ sugg1: this.state.suggestions.data[0] });
-      this.setState({ sugg2: [{ player_id: 2, first_name: "B" }] });
-      this.setState({ sugg3: [{ player_id: 3, first_name: "C" }] });
-      this.setState({ sugg4: [{ player_id: 4, first_name: "D" }] });
-      this.setState({ sugg5: [{ player_id: 5, first_name: "E" }] });
-    } else if (data.meta.total_count === 0) {
-      this.setState({ sugg1: [{ player_id: 1, first_name: "A" }] });
-      this.setState({ sugg2: [{ player_id: 2, first_name: "B" }] });
-      this.setState({ sugg3: [{ player_id: 3, first_name: "C" }] });
-      this.setState({ sugg4: [{ player_id: 4, first_name: "D" }] });
-      this.setState({ sugg5: [{ player_id: 5, first_name: "E" }] });
+      this.setState({ sugg2: [] });
+      this.setState({ sugg3: [] });
+      this.setState({ sugg4: [] });
+      this.setState({ sugg5: [] });
     }
   };
-  getSuggestions = () => {
-    var i = 0;
-    for (i; i < 4; i++) {
-      console.log(this.state.suggestions.data[i]);
-      return <div>Hello{i}</div>;
-    }
-  };
+  getSuggestions = () => {};
 
   handleInputChange = value => {
     this.setState({ value: value.target.value });

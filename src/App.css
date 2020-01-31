@@ -17,6 +17,9 @@
   padding: 10px 20px;
   border-radius: 12px;
 }
+.compare-button:hover {
+  cursor: pointer;
+}
 
 .p1-stats {
   width: 33%;
@@ -51,34 +54,80 @@
   flex-direction: column;
 }
 
-.p-form {
-  min-height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  float: left;
-  background-color: red;
-}
-
-.p-searchbar {
-  width: 20%;
-  padding: 10px;
-  border-color: black;
-}
-
-.p-suggestions {
-  min-height: 50vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: purple;
-}
-
-.p1-searchsection {
-  background-color: green;
+.p-searchsection {
   float: left;
   min-height: 10vh;
   width: 50%;
+}
+
+.p-form {
+  min-height: 10vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  float: left;
+}
+
+.p-searchbar {
+  width: 21%;
+  padding: 10px;
+  border-color: black;
+  font-size: 15px;
+}
+
+.p-suggestions {
+  min-height: 25vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.suggTop {
+  min-width: 22vh;
+  min-height: 4vh;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  text-indent: 10px;
+  font-size: 15px;
+  border-width: 1px 2px 1px 2px;
+  border-style: solid;
+  border-color: black;
+}
+.suggMid {
+  min-width: 22vh;
+  min-height: 4vh;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  text-indent: 10px;
+  font-size: 15px;
+  border-width: 0.5px 2px 0.5px 2px;
+  border-style: solid;
+  border-color: black;
+}
+
+.suggBot {
+  min-width: 22vh;
+  min-height: 4vh;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  text-indent: 10px;
+  font-size: 15px;
+  border-width: 1px 2px 2px 2px;
+  border-style: solid;
+  border-color: black;
+}
+
+.suggTop:hover,
+.suggMid:hover,
+.suggBot:hover {
+  background-color: yellow;
+}
+
+.allSugg {
+  background-color: orange;
 }

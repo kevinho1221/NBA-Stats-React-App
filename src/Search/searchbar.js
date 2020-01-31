@@ -1,15 +1,17 @@
-import React from "react";
+import React, { Component } from "react";
 import Suggestions from "./suggestions";
 
 class searchbar extends React.Component {
   state = {
-    value: "",
+    value: this.props.value,
     suggestions: [],
     sugg1: [],
     sugg2: [],
     sugg3: [],
     sugg4: [],
-    sugg5: []
+    sugg5: [],
+    isOpen: false,
+    selectedName: ""
   };
 
   /*async getAllNames() {
@@ -48,6 +50,7 @@ class searchbar extends React.Component {
       this.setState({ sugg3: [] });
       this.setState({ sugg4: [] });
       this.setState({ sugg5: [] });
+      this.setState({ isOpen: false });
       return;
     }
     const response = await fetch(
@@ -65,6 +68,7 @@ class searchbar extends React.Component {
 
   checkSuggestionLength = data => {
     console.log(data.meta.total_count);
+    this.setState({ isOpen: true });
     if (data.meta.total_count >= 5) {
       this.setState({ sugg1: this.state.suggestions.data[0] });
       this.setState({ sugg2: this.state.suggestions.data[1] });
@@ -97,7 +101,6 @@ class searchbar extends React.Component {
       this.setState({ sugg5: [] });
     }
   };
-  getSuggestions = () => {};
 
   handleInputChange = value => {
     this.setState({ value: value.target.value });
@@ -105,12 +108,22 @@ class searchbar extends React.Component {
     console.log(value.target.value);
   };
 
+  handleSelection = e => {
+    const thehtml = e.target.innerHTML;
+    this.props.updatePSearchValue(thehtml);
+    this.props.updatePSearchNumber(this.state.sugg1.id);
+    this.setState({ value: thehtml });
+    this.setState({ isOpen: false });
+  };
+
   render() {
     return (
-      <div className="p1-searchsection">
+      <div className="p-searchsection">
         <form className="p-form">
           <input
             className="p-searchbar"
+            value={this.state.value}
+            placeholder="Enter Player Name:"
             onChange={this.handleInputChange}
           ></input>
         </form>
@@ -121,6 +134,8 @@ class searchbar extends React.Component {
             sugg3={this.state.sugg3}
             sugg4={this.state.sugg4}
             sugg5={this.state.sugg5}
+            isOpen={this.state.isOpen}
+            handler={this.handleSelection}
           ></Suggestions>
         </div>
       </div>

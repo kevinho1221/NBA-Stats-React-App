@@ -1,24 +1,39 @@
+/*
+#0B0C10
+#1f2833
+#C5C6C7
+#66FCF1
+#45A29E
+*/
+
 .App {
   min-height: 100vh;
-  background-image: linear-gradient(
-    to top,
-    #fdcbf1 0%,
-    #fdcbf1 1%,
-    #e6dee9 100%
-  );
+  background-color: #1f2833;
 }
 
 .compare-button {
   margin: 30px;
-  background: lightblue;
+  background: #0b0c10;
   width: 14%;
   margin-left: 43%;
   margin-right: 43%;
   padding: 10px 20px;
   border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border-color: #66fcf1;
+  border-width: 2px;
 }
+
 .compare-button:hover {
   cursor: pointer;
+  background: #1f2833;
+}
+
+.compare-button:focus {
+  outline: 0;
+  border-color: #45a29e;
 }
 
 .p1-stats {
@@ -72,13 +87,22 @@
 .p-searchbar {
   width: 30%;
   padding: 10px;
-  border-color: black;
+  border-color: #66fcf1;
+  border-width: 2px;
+  border-style: solid;
   font-size: 15px;
   border-radius: 12px;
+  background-color: #0b0c10;
+  color: white;
 }
 
 .p-searchbar:hover {
-  background-color: azure;
+  background-color: #1f2833;
+}
+
+.p-searchbar:focus {
+  outline: 0;
+  border-color: #45a29e;
 }
 
 .p-suggestions {
@@ -156,9 +180,11 @@
 .suggMid:hover,
 .suggBotMid:hover,
 .suggBot:hover {
-  background-color: yellow;
+  background-color: #1f2833;
+  border-color: #45a29e;
 }
 
 .allSugg {
-  background-color: orange;
+  background-color: #0b0c10;
+  color: white;
 }

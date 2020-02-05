@@ -70,10 +70,15 @@
 }
 
 .p-searchbar {
-  width: 21%;
+  width: 30%;
   padding: 10px;
   border-color: black;
   font-size: 15px;
+  border-radius: 12px;
+}
+
+.p-searchbar:hover {
+  background-color: azure;
 }
 
 .p-suggestions {
@@ -85,7 +90,7 @@
 }
 
 .suggTop {
-  min-width: 22vh;
+  min-width: 30vh;
   min-height: 4vh;
   display: flex;
   cursor: pointer;
@@ -96,8 +101,32 @@
   border-style: solid;
   border-color: black;
 }
+.suggTopMid {
+  min-width: 30vh;
+  min-height: 4vh;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  text-indent: 10px;
+  font-size: 15px;
+  border-width: 0.5px 2px 0.5px 2px;
+  border-style: solid;
+  border-color: black;
+}
 .suggMid {
-  min-width: 22vh;
+  min-width: 30vh;
+  min-height: 4vh;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  text-indent: 10px;
+  font-size: 15px;
+  border-width: 0.5px 2px 0.5px 2px;
+  border-style: solid;
+  border-color: black;
+}
+.suggBotMid {
+  min-width: 30vh;
   min-height: 4vh;
   display: flex;
   cursor: pointer;
@@ -110,7 +139,7 @@
 }
 
 .suggBot {
-  min-width: 22vh;
+  min-width: 30vh;
   min-height: 4vh;
   display: flex;
   cursor: pointer;
@@ -123,7 +152,9 @@
 }
 
 .suggTop:hover,
+.suggTopMid:hover,
 .suggMid:hover,
+.suggBotMid:hover,
 .suggBot:hover {
   background-color: yellow;
 }

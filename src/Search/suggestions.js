@@ -16,13 +16,13 @@ const suggestions = ({
       <div className="suggTop" onClick={handler}>
         {sugg1.first_name} {sugg1.last_name}
       </div>
-      <div className="suggMid" onClick={handler}>
+      <div className="suggTopMid" onClick={handler}>
         {sugg2.first_name} {sugg2.last_name}
       </div>
       <div className="suggMid" onClick={handler}>
         {sugg3.first_name} {sugg3.last_name}
       </div>
-      <div className="suggMid" onClick={handler}>
+      <div className="suggBotMid" onClick={handler}>
         {sugg4.first_name} {sugg4.last_name}
       </div>
       <div className="suggBot" onClick={handler}>

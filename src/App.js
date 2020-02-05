@@ -7,29 +7,52 @@ class App extends Component {
   state = {
     p1SearchValue: "",
     p2SearchValue: "",
-    p1SearchNumber: 115,
-    p2SearchNumber: 100,
+    p1SearchNumber: 1,
+    p2SearchNumber: 1,
     p1Stats: {},
     p2Stats: {},
     categories: {
-      player_id: "Name",
+      name: "Name",
+      player_id: "Player ID",
       pts: "Points",
       reb: "Rebounds",
       ast: "Assists"
-    }
+    },
+    isSearched: false
   };
+
   getStats = async () => {
     //uses backticks in the line below
-    const response = await fetch(
+    const response1 = await fetch(
       `https://www.balldontlie.io/api/v1/season_averages?season=2018&player_ids[]=${this.state.p1SearchNumber}`
     );
-    const data = await response.json();
+    const data1 = await response1.json();
     //setRecipes(data.hits);
-    //console.log(data);
+    console.log(data1);
+    if (data1.data.length === 0) {
+      window.alert(
+        this.state.p1SearchValue +
+          " did not play in the 2018 season! \n Please enter another player name"
+      );
 
-    const fieldgoalsm = data.data.map(stats => {
+      console.log(this.state.p1SearchValue);
+    }
+    console.log(data1.data.length);
+
+    const setP1State = data1.data.map(stats => {
       console.log(stats.fgm, stats.ftm);
       this.setState({ p1Stats: stats });
+    });
+
+    const response2 = await fetch(
+      `https://www.balldontlie.io/api/v1/season_averages?season=2018&player_ids[]=${this.state.p2SearchNumber}`
+    );
+    const data2 = await response2.json();
+
+    console.log(data2);
+    const setP2State = data2.data.map(stats => {
+      console.log(stats.fgm, stats.ftm);
+      this.setState({ p2Stats: stats });
     });
   };
 
@@ -83,18 +106,26 @@ class App extends Component {
             updatePSearchNumber={this.updateP2SearchNumber}
           />
         </div>
-        <button className="compare-button">Compare</button>
+        <button className="compare-button" onClick={this.getStats}>
+          Compare
+        </button>
         <div className="p1-stats">
-          <Player stats={this.state.p1Stats}></Player>
+          <Player
+            stats={this.state.p1Stats}
+            name={this.state.p1SearchValue}
+          ></Player>
         </div>
         <div className="categories">
-          <Player stats={this.state.categories}></Player>
+          <Player
+            stats={this.state.categories}
+            name={this.state.categories.name}
+          ></Player>
         </div>
         <div className="p2-stats">
-          <h1>100</h1>
-          <h1>100</h1>
-          <h1>100</h1>
-          <h1>100</h1>
+          <Player
+            stats={this.state.p2Stats}
+            name={this.state.p2SearchValue}
+          ></Player>
         </div>
       </div>
     );

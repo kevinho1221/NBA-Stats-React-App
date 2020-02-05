@@ -14,33 +14,6 @@ class searchbar extends React.Component {
     selectedName: ""
   };
 
-  /*async getAllNames() {
-    const response = await fetch(
-      `https://www.balldontlie.io/api/v1/players?search=${name}`
-    );
-
-    const data = await response.json();
-
-    console.log(data.meta.total_pages);
-    var i = 0;
-    for (i = 1; i < data.meta.total_pages + 1; i++) {
-      const playersloop = await fetch(
-        `https://www.balldontlie.io/api/v1/players?page=${i}`
-      );
-    }
-
-    this.setState({ firstnames: data.data.first_name });
-    const fieldgoalsm = data.data.map(stats => {
-      console.log(stats.first_name);
-    });
-
-  }
-
-    componentDidMount() {
-    //this.getAllNames();
-  }
-  */
-
   async getName() {
     const { value } = this.state;
     console.log(this.state.suggestions);
@@ -62,8 +35,6 @@ class searchbar extends React.Component {
 
     this.setState({ suggestions: data });
     this.checkSuggestionLength(this.state.suggestions);
-
-    //this.getSuggestions();
   }
 
   checkSuggestionLength = data => {
@@ -111,7 +82,21 @@ class searchbar extends React.Component {
   handleSelection = e => {
     const thehtml = e.target.innerHTML;
     this.props.updatePSearchValue(thehtml);
-    this.props.updatePSearchNumber(this.state.sugg1.id);
+
+    console.log(e.target.className);
+
+    if (e.target.className === "suggTop") {
+      this.props.updatePSearchNumber(this.state.sugg1.id);
+    } else if (e.target.className === "suggTopMid") {
+      this.props.updatePSearchNumber(this.state.sugg2.id);
+    } else if (e.target.className === "suggMid") {
+      this.props.updatePSearchNumber(this.state.sugg3.id);
+    } else if (e.target.className === "suggBotMid") {
+      this.props.updatePSearchNumber(this.state.sugg4.id);
+    } else if (e.target.className === "suggBot") {
+      this.props.updatePSearchNumber(this.state.sugg5.id);
+    }
+
     this.setState({ value: thehtml });
     this.setState({ isOpen: false });
   };

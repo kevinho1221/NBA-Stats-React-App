@@ -14,13 +14,13 @@
 .compare-button {
   margin: 30px;
   background: #0b0c10;
-  width: 14%;
-  margin-left: 43%;
-  margin-right: 43%;
+  width: 20%;
+  margin-left: 40%;
+  margin-right: 40%;
   padding: 10px 20px;
   border-radius: 12px;
   color: white;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   border-color: #66fcf1;
   border-width: 2px;
@@ -37,7 +37,7 @@
 }
 
 .p1-stats {
-  width: 33%;
+  width: 33.3%;
   background-color: green;
   display: flex;
   min-height: 50vh;
@@ -49,7 +49,7 @@
 
 .categories {
   background-color: red;
-  width: 33%;
+  width: 33.3%;
   display: flex;
   min-height: 50vh;
   align-items: center;
@@ -60,7 +60,7 @@
 
 .p2-stats {
   background-color: lightblue;
-  width: 33%;
+  width: 33.3%;
   display: flex;
   min-height: 50vh;
   align-items: center;
@@ -186,5 +186,9 @@
 
 .allSugg {
   background-color: #0b0c10;
+  color: white;
+}
+
+.pname {
   color: white;
 }

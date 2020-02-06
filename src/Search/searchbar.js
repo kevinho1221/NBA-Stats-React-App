@@ -76,7 +76,6 @@ class searchbar extends React.Component {
   handleInputChange = value => {
     this.setState({ value: value.target.value });
     this.getName();
-    console.log(value.target.value);
   };
 
   handleSelection = e => {
@@ -101,10 +100,15 @@ class searchbar extends React.Component {
     this.setState({ isOpen: false });
   };
 
+  submitHandler = e => {
+    //prevents submission when pressing enter
+    e.preventDefault();
+  };
+
   render() {
     return (
       <div className="p-searchsection">
-        <form className="p-form">
+        <form className="p-form" onSubmit={this.submitHandler}>
           <input
             className="p-searchbar"
             value={this.state.value}

@@ -21,23 +21,31 @@ class App extends Component {
     isSearched: false
   };
 
+  checkInputs = () => {
+    console.log(this.state.p1SearchValue.length);
+    if (this.state.p1SearchValue != "" && this.state.p2SearchValue != "") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   getStats = async () => {
     //uses backticks in the line below
     const response1 = await fetch(
       `https://www.balldontlie.io/api/v1/season_averages?season=2018&player_ids[]=${this.state.p1SearchNumber}`
     );
     const data1 = await response1.json();
-    //setRecipes(data.hits);
+
     console.log(data1);
+
+    //checks if the player played in the 2018 season
     if (data1.data.length === 0) {
       window.alert(
         this.state.p1SearchValue +
-          " did not play in the 2018 season! \n Please enter another player name"
+          " did not play in the 2018 season! \n Please enter another player name!"
       );
-
-      console.log(this.state.p1SearchValue);
     }
-    console.log(data1.data.length);
 
     const setP1State = data1.data.map(stats => {
       console.log(stats.fgm, stats.ftm);
@@ -49,6 +57,13 @@ class App extends Component {
     );
     const data2 = await response2.json();
 
+    //checks if the player played in the 2018 season
+    if (data2.data.length === 0) {
+      window.alert(
+        this.state.p2SearchValue +
+          " did not play in the 2018 season! \n Please enter another player name!"
+      );
+    }
     console.log(data2);
     const setP2State = data2.data.map(stats => {
       console.log(stats.fgm, stats.ftm);
@@ -56,9 +71,9 @@ class App extends Component {
     });
   };
 
-  componentDidMount() {
+  /*componentDidMount() {
     this.getStats();
-  }
+  }*/
 
   updateP1SearchValue = value => {
     this.setState({ p1SearchValue: value }, () => {
@@ -84,12 +99,16 @@ class App extends Component {
     });
   };
 
-  render() {
-    /*const [p1stats, setP1stats] = useState([]);
-    const [categories] = [
-      { player_id: "Name", pts: "Points", reb: "Rebounds", ast: "Assists" }
-    ];*/
+  compareOnClick = () => {
+    var goodInputs = this.checkInputs();
+    if (goodInputs) {
+      this.getStats();
+    } else {
+      window.alert("Please enter a name for both players!");
+    }
+  };
 
+  render() {
     return (
       <div className="App">
         <div className="p1-searchbar">
@@ -106,7 +125,7 @@ class App extends Component {
             updatePSearchNumber={this.updateP2SearchNumber}
           />
         </div>
-        <button className="compare-button" onClick={this.getStats}>
+        <button className="compare-button" onClick={this.compareOnClick}>
           Compare
         </button>
         <div className="p1-stats">

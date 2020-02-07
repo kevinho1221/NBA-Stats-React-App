@@ -122,6 +122,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="Season">
+          <h1>2018-2019 Season Comparison</h1>
+        </div>
         <div className="p1-searchbar">
           <SearchBar
             value={this.state.p1SearchValue}

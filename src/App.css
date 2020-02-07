@@ -6,9 +6,23 @@
 #45A29E
 */
 
+* {
+}
 .App {
   min-height: 400vh;
   background-color: #1f2833;
+  overflow-x: hidden;
+}
+
+.Season {
+  color: #66fcf1;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .compare-button {

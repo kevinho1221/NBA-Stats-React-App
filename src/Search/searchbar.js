@@ -11,7 +11,8 @@ class searchbar extends React.Component {
     sugg4: [],
     sugg5: [],
     isOpen: false,
-    selectedName: ""
+    selectedName: "",
+    isPressed: this.props.isPressed
   };
 
   async getName() {
@@ -81,6 +82,7 @@ class searchbar extends React.Component {
   handleSelection = e => {
     const thehtml = e.target.innerHTML;
     this.props.updatePSearchValue(thehtml);
+    this.props.updateIsPressed(false);
 
     console.log(e.target.className);
 

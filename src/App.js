@@ -11,14 +11,9 @@ class App extends Component {
     p2SearchNumber: 1,
     p1Stats: {},
     p2Stats: {},
-    categories: {
-      name: "Name",
-      player_id: "Player ID",
-      pts: "Points",
-      reb: "Rebounds",
-      ast: "Assists"
-    },
-    isSearched: false
+    categories: {},
+    isSearched: false,
+    isPressed: false
   };
 
   checkInputs = () => {
@@ -99,9 +94,24 @@ class App extends Component {
     });
   };
 
+  updateIsPressed = value => {
+    this.setState({ isPressed: value });
+  };
+
   compareOnClick = () => {
     var goodInputs = this.checkInputs();
+
     if (goodInputs) {
+      this.setState({
+        categories: {
+          name: "Name",
+          player_id: "Player ID",
+          pts: "Points",
+          reb: "Rebounds",
+          ast: "Assists"
+        }
+      });
+      this.updateIsPressed(true);
       this.getStats();
     } else {
       window.alert("Please enter a name for both players!");
@@ -116,6 +126,7 @@ class App extends Component {
             value={this.state.p1SearchValue}
             updatePSearchValue={this.updateP1SearchValue}
             updatePSearchNumber={this.updateP1SearchNumber}
+            updateIsPressed={this.updateIsPressed}
           />
         </div>
         <div className="p2-searchbar">
@@ -123,6 +134,7 @@ class App extends Component {
             value={this.state.p2SearchValue}
             updatePSearchValue={this.updateP2SearchValue}
             updatePSearchNumber={this.updateP2SearchNumber}
+            updateIsPressed={this.updateIsPressed}
           />
         </div>
         <button className="compare-button" onClick={this.compareOnClick}>
@@ -132,18 +144,21 @@ class App extends Component {
           <Player
             stats={this.state.p1Stats}
             name={this.state.p1SearchValue}
+            isPressed={this.state.isPressed}
           ></Player>
         </div>
         <div className="categories">
           <Player
             stats={this.state.categories}
             name={this.state.categories.name}
+            isPressed={this.state.isPressed}
           ></Player>
         </div>
         <div className="p2-stats">
           <Player
             stats={this.state.p2Stats}
             name={this.state.p2SearchValue}
+            isPressed={this.state.isPressed}
           ></Player>
         </div>
       </div>

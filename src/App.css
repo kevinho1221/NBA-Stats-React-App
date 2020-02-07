@@ -193,24 +193,14 @@
   justify-content: center;
 }
 
-.pId {
-  color: white;
-  display: flex;
-  justify-content: center;
-}
-
-.pPoints {
-  color: white;
-  display: flex;
-  justify-content: center;
-}
-
-.pRebounds {
-  color: white;
-  display: flex;
-  justify-content: center;
-}
-.pAssists {
+.pFGM,
+.pFTM,
+.pPoints,
+.pRebounds,
+.pAssists,
+.pSteals,
+.pBlocks,
+.pTurnover {
   color: white;
   display: flex;
   justify-content: center;

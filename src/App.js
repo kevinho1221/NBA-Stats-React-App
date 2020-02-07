@@ -9,6 +9,8 @@ class App extends Component {
     p2SearchValue: "",
     p1SearchNumber: 1,
     p2SearchNumber: 1,
+    p1Name: "",
+    p2Name: "",
     p1Stats: {},
     p2Stats: {},
     categories: {},
@@ -105,13 +107,12 @@ class App extends Component {
       this.setState({
         categories: {
           name: "Name",
-          player_id: "Player ID",
-          pts: "Points",
-          reb: "Rebounds",
-          ast: "Assists"
+          player_id: "Categories"
         }
       });
       this.updateIsPressed(true);
+      this.setState({ p1Name: this.state.p1SearchValue });
+      this.setState({ p2Name: this.state.p2SearchValue });
       this.getStats();
     } else {
       window.alert("Please enter a name for both players!");
@@ -143,7 +144,7 @@ class App extends Component {
         <div className="p1-stats">
           <Player
             stats={this.state.p1Stats}
-            name={this.state.p1SearchValue}
+            name={this.state.p1Name}
             isPressed={this.state.isPressed}
           ></Player>
         </div>
@@ -157,7 +158,7 @@ class App extends Component {
         <div className="p2-stats">
           <Player
             stats={this.state.p2Stats}
-            name={this.state.p2SearchValue}
+            name={this.state.p2Name}
             isPressed={this.state.isPressed}
           ></Player>
         </div>

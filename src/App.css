@@ -6,8 +6,6 @@
 #45A29E
 */
 
-* {
-}
 .App {
   min-height: 400vh;
   background-color: #1f2833;
@@ -25,6 +23,9 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.buttonSection {
+  margin-bottom: 50px;
+}
 .compare-button {
   margin: 30px;
   background: #0b0c10;
@@ -205,6 +206,7 @@
   color: white;
   display: flex;
   justify-content: center;
+  font-size: 45px;
 }
 
 .pFGM,

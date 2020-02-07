@@ -15,7 +15,8 @@ class App extends Component {
     p2Stats: {},
     categories: {},
     isSearched: false,
-    isPressed: false
+    isPressed: false,
+    myRef: React.createRef()
   };
 
   checkInputs = () => {
@@ -100,6 +101,9 @@ class App extends Component {
     this.setState({ isPressed: value });
   };
 
+  scroll(ref) {
+    ref.current.scrollIntoView({ behavior: "smooth" });
+  }
   compareOnClick = () => {
     var goodInputs = this.checkInputs();
 
@@ -114,6 +118,7 @@ class App extends Component {
       this.setState({ p1Name: this.state.p1SearchValue });
       this.setState({ p2Name: this.state.p2SearchValue });
       this.getStats();
+      this.scroll(this.state.myRef);
     } else {
       window.alert("Please enter a name for both players!");
     }
@@ -141,10 +146,13 @@ class App extends Component {
             updateIsPressed={this.updateIsPressed}
           />
         </div>
-        <button className="compare-button" onClick={this.compareOnClick}>
-          Compare
-        </button>
-        <div className="p1-stats">
+        <div className="buttonSection">
+          <button className="compare-button" onClick={this.compareOnClick}>
+            Compare
+          </button>
+        </div>
+
+        <div className="p1-stats" ref={this.state.myRef}>
           <Player
             stats={this.state.p1Stats}
             name={this.state.p1Name}

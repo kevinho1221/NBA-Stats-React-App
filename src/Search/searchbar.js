@@ -94,6 +94,18 @@ class searchbar extends React.Component {
         };
       }
     }
+
+    //Checks to make sure that the number of suggestions stay when the iteration gets to the last
+    //player in the json file array
+    if (num == origtotalcount - 1) {
+      return {
+        num: num,
+        count: totalcount,
+        name: this.state.suggestions.data[num].last_name,
+        suggestions: numOfSuggestions
+      };
+    }
+
     //checking to see if totalcount is 0 because it means there are no valid suggestions left
     if (totalcount == 0 || num >= origtotalcount - 1) {
       return {
@@ -106,21 +118,28 @@ class searchbar extends React.Component {
     var i = num + 1;
     var height = this.state.suggestions.data[i].height_feet;
 
-    /*do {
-      height = this.state.suggestions.data[i].height_feet;
-      i = i + 1;
-      totalcount = totalcount - 1;
-      //console.log(i);
-      //console.log(totalcount);
-    } while (height == null)*/
     if (height == null) {
-      while (height == null) {
+      while (height == null && i < origtotalcount - 1) {
         i = i + 1;
         totalcount = totalcount - 1;
         height = this.state.suggestions.data[i].height_feet;
       }
+
+      //if heigh is null here then that means iteration has reached the end,
+      //meaning another suggestion should not be added
+      if (height == null) {
+        numOfSuggestions = numOfSuggestions - 1;
+      }
     } else {
       totalcount = totalcount - 1;
+    }
+
+    //checks to see if the index is at the end of the player array
+    //if it is at the end, suptracts one from the number of suggestions so that when 1 is added
+    //in the return statement, it is neautralized
+
+    if (num == origtotalcount - 1) {
+      numOfSuggestions = numOfSuggestions - 1;
     }
 
     return {
@@ -139,6 +158,7 @@ class searchbar extends React.Component {
     var origtotalcount = data.meta.total_count;
     var numOfSuggestions = 0;
 
+    //returns if there are no search results, for example if an invalid name is searched
     if (totalcount == 0) {
       return;
     }

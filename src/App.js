@@ -16,6 +16,7 @@ class App extends Component {
     categories: {},
     isSearched: false,
     isPressed: false,
+    //for scrolling
     myRef: React.createRef()
   };
 

@@ -6,6 +6,7 @@ const Player = ({ stats, name, isPressed }) => {
   }
   var roundedfgm = "";
   var roundedftm = "";
+  var roundedthrees = Number(stats.fg3m).toFixed(1);
   var roundedpts = Number(stats.pts).toFixed(1);
   var roundedreb = Number(stats.reb).toFixed(1);
   var roundedast = Number(stats.ast).toFixed(1);
@@ -16,6 +17,7 @@ const Player = ({ stats, name, isPressed }) => {
   if (stats.player_id == "Categories") {
     roundedfgm = "FG%";
     roundedftm = "FT%";
+    roundedthrees = "3PTM";
     roundedpts = "Points";
     roundedreb = "Rebounds";
     roundedast = "Assists";
@@ -33,6 +35,7 @@ const Player = ({ stats, name, isPressed }) => {
       <h1 className="pName">{name}</h1>
       <h1 className="pFGM">{roundedfgm}</h1>
       <h1 className="pFTM">{roundedftm}</h1>
+      <h1 className="pThrees">{roundedthrees}</h1>
       <h1 className="pPoints">{roundedpts}</h1>
       <h1 className="pRebounds">{roundedreb}</h1>
       <h1 className="pAssists">{roundedast}</h1>

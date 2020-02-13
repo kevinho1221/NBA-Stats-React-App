@@ -17,7 +17,8 @@ class App extends Component {
     isSearched: false,
     isPressed: false,
     //for scrolling
-    myRef: React.createRef()
+    myRef: React.createRef(),
+    shouldScroll: true
   };
 
   checkInputs = () => {
@@ -44,6 +45,7 @@ class App extends Component {
         this.state.p1SearchValue +
           " did not play in the 2018 season! \n Please enter another player name!"
       );
+      this.setState({ shouldScroll: false });
     }
 
     const setP1State = data1.data.map(stats => {
@@ -62,12 +64,19 @@ class App extends Component {
         this.state.p2SearchValue +
           " did not play in the 2018 season! \n Please enter another player name!"
       );
+      this.setState({ shouldScroll: false });
     }
     console.log(data2);
     const setP2State = data2.data.map(stats => {
       console.log(stats.fgm, stats.ftm);
       this.setState({ p2Stats: stats });
     });
+
+    if (this.state.shouldScroll == true) {
+      this.scroll(this.state.myRef);
+    }
+
+    this.setState({ shouldScroll: true });
   };
 
   /*componentDidMount() {
@@ -119,7 +128,7 @@ class App extends Component {
       this.setState({ p1Name: this.state.p1SearchValue });
       this.setState({ p2Name: this.state.p2SearchValue });
       this.getStats();
-      this.scroll(this.state.myRef);
+      //this.scroll(this.state.myRef);
     } else {
       window.alert("Please enter a name for both players!");
     }

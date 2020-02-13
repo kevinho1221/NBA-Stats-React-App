@@ -39,42 +39,6 @@ class searchbar extends React.Component {
     this.checkSuggestionLength(this.state.suggestions);
   }
 
-  /*checkSuggestionLength = data => {
-    console.log(data.meta.total_count);
-    this.setState({ isOpen: true });
-    if (data.meta.total_count >= 5) {
-      this.setState({ sugg1: this.state.suggestions.data[0] });
-      this.setState({ sugg2: this.state.suggestions.data[1] });
-      this.setState({ sugg3: this.state.suggestions.data[2] });
-      this.setState({ sugg4: this.state.suggestions.data[3] });
-      this.setState({ sugg5: this.state.suggestions.data[4] });
-    } else if (data.meta.total_count === 4) {
-      this.setState({ sugg1: this.state.suggestions.data[0] });
-      this.setState({ sugg2: this.state.suggestions.data[1] });
-      this.setState({ sugg3: this.state.suggestions.data[2] });
-      this.setState({ sugg4: this.state.suggestions.data[3] });
-      this.setState({ sugg5: [] });
-    } else if (data.meta.total_count === 3) {
-      this.setState({ sugg1: this.state.suggestions.data[0] });
-      this.setState({ sugg2: this.state.suggestions.data[1] });
-      this.setState({ sugg3: this.state.suggestions.data[2] });
-      this.setState({ sugg4: [] });
-      this.setState({ sugg5: [] });
-    } else if (data.meta.total_count === 2) {
-      this.setState({ sugg1: this.state.suggestions.data[0] });
-      this.setState({ sugg2: this.state.suggestions.data[1] });
-      this.setState({ sugg3: [] });
-      this.setState({ sugg4: [] });
-      this.setState({ sugg5: [] });
-    } else if (data.meta.total_count === 1) {
-      this.setState({ sugg1: this.state.suggestions.data[0] });
-      this.setState({ sugg2: [] });
-      this.setState({ sugg3: [] });
-      this.setState({ sugg4: [] });
-      this.setState({ sugg5: [] });
-    }
-  };*/
-
   checkActive = (
     num,
     totalcount,
@@ -262,8 +226,9 @@ class searchbar extends React.Component {
 
   handleInputChange = value => {
     var theValue = value.target.value;
+
+    //reads user input while changing the state
     this.setState({ value: theValue }, this.getName);
-    //this.getName();
   };
 
   handleSelection = e => {

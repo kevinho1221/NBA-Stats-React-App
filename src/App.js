@@ -18,7 +18,9 @@ class App extends Component {
     isPressed: false,
     //for scrolling
     myRef: React.createRef(),
-    shouldScroll: true
+    shouldScroll: false,
+    handleFirstInvalidInput: false,
+    inputFlag: 0
   };
 
   checkInputs = () => {
@@ -37,46 +39,52 @@ class App extends Component {
     );
     const data1 = await response1.json();
 
-    console.log(data1);
-
-    //checks if the player played in the 2018 season
-    if (data1.data.length === 0) {
-      window.alert(
-        this.state.p1SearchValue +
-          " did not play in the 2018 season! \n Please enter another player name!"
-      );
-      this.setState({ shouldScroll: false });
-    }
-
-    const setP1State = data1.data.map(stats => {
-      console.log(stats.fgm, stats.ftm);
-      this.setState({ p1Stats: stats });
-    });
-
     const response2 = await fetch(
       `https://www.balldontlie.io/api/v1/season_averages?season=2018&player_ids[]=${this.state.p2SearchNumber}`
     );
     const data2 = await response2.json();
 
+    console.log(data1);
+    console.log(data2);
+
     //checks if the player played in the 2018 season
-    if (data2.data.length === 0) {
+
+    if (data1.data.length === 0) {
+      window.alert(
+        this.state.p1SearchValue +
+          " did not play in the 2018 season! \n Please enter another player name!"
+      );
+      //this.state.inputFlag = this.state.inputFlag + 1;
+    } else if (data2.data.length === 0) {
       window.alert(
         this.state.p2SearchValue +
           " did not play in the 2018 season! \n Please enter another player name!"
       );
-      this.setState({ shouldScroll: false });
+      //this.state.inputFlag = this.state.inputFlag + 1;
+    } else {
+      const setP1State = data1.data.map(stats => {
+        console.log(stats.fgm, stats.ftm);
+        this.setState({ p1Stats: stats });
+      });
+      const setP2State = data2.data.map(stats => {
+        console.log(stats.fgm, stats.ftm);
+        this.setState({ p2Stats: stats });
+      });
+
+      //only scrolls and updates here if the player has played in 2018
+      this.setState({ shouldScroll: true });
+      this.setState({ p1Name: this.state.p1SearchValue });
+      this.setState({ p2Name: this.state.p2SearchValue });
     }
-    console.log(data2);
-    const setP2State = data2.data.map(stats => {
-      console.log(stats.fgm, stats.ftm);
-      this.setState({ p2Stats: stats });
-    });
 
     if (this.state.shouldScroll == true) {
       this.scroll(this.state.myRef);
     }
 
-    this.setState({ shouldScroll: true });
+    //sets the scroll back to false at the end to reset for next search
+    this.setState({ shouldScroll: false });
+
+    console.log(this.state.handleFirstInvalidInput);
   };
 
   /*componentDidMount() {
@@ -125,9 +133,8 @@ class App extends Component {
         }
       });
       this.updateIsPressed(true);
-      this.setState({ p1Name: this.state.p1SearchValue });
-      this.setState({ p2Name: this.state.p2SearchValue });
       this.getStats();
+
       //this.scroll(this.state.myRef);
     } else {
       window.alert("Please enter a name for both players!");

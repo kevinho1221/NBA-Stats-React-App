@@ -18,9 +18,7 @@ class App extends Component {
     isPressed: false,
     //for scrolling
     myRef: React.createRef(),
-    shouldScroll: false,
-    handleFirstInvalidInput: false,
-    inputFlag: 0
+    shouldScroll: false
   };
 
   checkInputs = () => {
@@ -54,13 +52,11 @@ class App extends Component {
         this.state.p1SearchValue +
           " did not play in the 2018 season! \n Please enter another player name!"
       );
-      //this.state.inputFlag = this.state.inputFlag + 1;
     } else if (data2.data.length === 0) {
       window.alert(
         this.state.p2SearchValue +
           " did not play in the 2018 season! \n Please enter another player name!"
       );
-      //this.state.inputFlag = this.state.inputFlag + 1;
     } else {
       const setP1State = data1.data.map(stats => {
         console.log(stats.fgm, stats.ftm);

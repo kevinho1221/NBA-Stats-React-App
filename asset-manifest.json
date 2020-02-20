@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/NBA-Stats-React-App/static/css/main.7f7850fd.chunk.css",
+    "main.js": "/NBA-Stats-React-App/static/js/main.06f7a72d.chunk.js",
+    "main.js.map": "/NBA-Stats-React-App/static/js/main.06f7a72d.chunk.js.map",
+    "runtime-main.js": "/NBA-Stats-React-App/static/js/runtime-main.a4e499ac.js",
+    "runtime-main.js.map": "/NBA-Stats-React-App/static/js/runtime-main.a4e499ac.js.map",
+    "static/js/2.1e9ac43d.chunk.js": "/NBA-Stats-React-App/static/js/2.1e9ac43d.chunk.js",
+    "static/js/2.1e9ac43d.chunk.js.map": "/NBA-Stats-React-App/static/js/2.1e9ac43d.chunk.js.map",
+    "index.html": "/NBA-Stats-React-App/index.html",
+    "precache-manifest.7f598e3a24ecba44622e27547874d096.js": "/NBA-Stats-React-App/precache-manifest.7f598e3a24ecba44622e27547874d096.js",
+    "service-worker.js": "/NBA-Stats-React-App/service-worker.js",
+    "static/css/main.7f7850fd.chunk.css.map": "/NBA-Stats-React-App/static/css/main.7f7850fd.chunk.css.map",
+    "static/js/2.1e9ac43d.chunk.js.LICENSE": "/NBA-Stats-React-App/static/js/2.1e9ac43d.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a4e499ac.js",
+    "static/js/2.1e9ac43d.chunk.js",
+    "static/css/main.7f7850fd.chunk.css",
+    "static/js/main.06f7a72d.chunk.js"
+  ]
+}

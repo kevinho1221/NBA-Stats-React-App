@@ -21,6 +21,24 @@ class App extends Component {
     shouldScroll: false
   };
 
+  compareOnClick = () => {
+    var goodInputs = this.checkInputs();
+
+    if (goodInputs) {
+      this.setState({
+        categories: {
+          name: "Name",
+          player_id: "Categories"
+        }
+      });
+      this.updateIsPressed(true);
+      this.getStats();
+    } else {
+      window.alert("Please enter a name for both players!");
+    }
+  };
+
+  //Checks to see if the either of the inputs are blank
   checkInputs = () => {
     console.log(this.state.p1SearchValue.length);
     if (this.state.p1SearchValue != "" && this.state.p2SearchValue != "") {
@@ -30,6 +48,8 @@ class App extends Component {
     }
   };
 
+  /*main function that is used after the Compare button is clicked the retrieves player data
+  from the API*/
   getStats = async () => {
     //uses backticks in the line below
     const response1 = await fetch(
@@ -42,11 +62,10 @@ class App extends Component {
     );
     const data2 = await response2.json();
 
-    console.log(data1);
-    console.log(data2);
+    //console.log(data1);
+    //console.log(data2);
 
     //checks if the player played in the 2018 season
-
     if (data1.data.length === 0) {
       window.alert(
         this.state.p1SearchValue +
@@ -80,12 +99,8 @@ class App extends Component {
     //sets the scroll back to false at the end to reset for next search
     this.setState({ shouldScroll: false });
 
-    console.log(this.state.handleFirstInvalidInput);
+    //console.log(this.state.handleFirstInvalidInput);
   };
-
-  /*componentDidMount() {
-    this.getStats();
-  }*/
 
   updateP1SearchValue = value => {
     this.setState({ p1SearchValue: value }, () => {
@@ -111,6 +126,8 @@ class App extends Component {
     });
   };
 
+  //updates the IsPressed state to signal when the compare button is pressed
+  //Used so that the Player object only displays when the compare button is pressed
   updateIsPressed = value => {
     this.setState({ isPressed: value });
   };
@@ -118,24 +135,6 @@ class App extends Component {
   scroll(ref) {
     ref.current.scrollIntoView({ behavior: "smooth" });
   }
-  compareOnClick = () => {
-    var goodInputs = this.checkInputs();
-
-    if (goodInputs) {
-      this.setState({
-        categories: {
-          name: "Name",
-          player_id: "Categories"
-        }
-      });
-      this.updateIsPressed(true);
-      this.getStats();
-
-      //this.scroll(this.state.myRef);
-    } else {
-      window.alert("Please enter a name for both players!");
-    }
-  };
 
   render() {
     return (
@@ -148,7 +147,6 @@ class App extends Component {
             value={this.state.p1SearchValue}
             updatePSearchValue={this.updateP1SearchValue}
             updatePSearchNumber={this.updateP1SearchNumber}
-            updateIsPressed={this.updateIsPressed}
           />
         </div>
         <div className="p2-searchbar">
@@ -156,7 +154,6 @@ class App extends Component {
             value={this.state.p2SearchValue}
             updatePSearchValue={this.updateP2SearchValue}
             updatePSearchNumber={this.updateP2SearchNumber}
-            updateIsPressed={this.updateIsPressed}
           />
         </div>
         <div className="buttonSection">

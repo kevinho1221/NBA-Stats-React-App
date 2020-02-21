@@ -12,8 +12,7 @@ class searchbar extends React.Component {
     sugg4: [],
     sugg5: [],
     isOpen: false,
-    selectedName: "",
-    isPressed: this.props.isPressed
+    selectedName: ""
   };
 
   async getName() {
@@ -28,17 +27,24 @@ class searchbar extends React.Component {
       this.setState({ isOpen: false });
       return;
     }
+
+    //fetches top 100 search results if the current user input is more 4 or more letters long
     const response = await fetch(
       `https://www.balldontlie.io/api/v1/players?search=${value}&per_page=100`
     );
-    console.log(response);
+    //console.log(response);
+
     const data = await response.json();
-    console.log(data);
+    //console.log(data);
 
     this.setState({ suggestions: data });
     this.checkSuggestionLength(this.state.suggestions);
   }
 
+  /*Iterates through the suggestions pulled from the API search at a specific point, which
+  is passed into this function. Returns the index number of the next valid player, the total
+  count of player objects left to be iterate through, and the running number of suggestions 
+  to be displayed (incremented each time the next valid player is found)*/
   checkActive = (
     num,
     totalcount,
@@ -46,26 +52,26 @@ class searchbar extends React.Component {
     numOfSuggestions,
     checkFirst
   ) => {
-    //check to see if there is only one search result, if there is then set the
-    //suggestions to show only 1 item
+    /*check to see if there is only one search result, if there is then set the
+    suggestions to show only 1 item*/
     if (checkFirst == true) {
       if (totalcount == 1) {
         return {
           num: num,
           count: totalcount,
-          name: this.state.suggestions.data[num].last_name,
+          //name: this.state.suggestions.data[num].last_name,
           suggestions: 1
         };
       }
     }
 
-    //Checks to make sure that the number of suggestions stay when the iteration gets to the last
-    //player in the json file array
+    /*Checks to make sure that the number of suggestions stay when the iteration gets to the last
+    player in the json file array*/
     if (num == origtotalcount - 1) {
       return {
         num: num,
         count: totalcount,
-        name: this.state.suggestions.data[num].last_name,
+        //name: this.state.suggestions.data[num].last_name,
         suggestions: numOfSuggestions
       };
     }
@@ -75,10 +81,13 @@ class searchbar extends React.Component {
       return {
         num: num,
         count: totalcount,
-        name: this.state.suggestions.data[num].last_name,
+        //name: this.state.suggestions.data[num].last_name,
         suggestions: numOfSuggestions
       };
     }
+
+    /*since the height field is null for players who are too old, I'm using that to 
+    determine whether or not a player is active*/
     var i = num + 1;
     var height = this.state.suggestions.data[i].height_feet;
 
@@ -89,7 +98,7 @@ class searchbar extends React.Component {
         height = this.state.suggestions.data[i].height_feet;
       }
 
-      //if heigh is null here then that means iteration has reached the end,
+      //if height is null here then that means iteration has reached the end,
       //meaning another suggestion should not be added
       if (height == null) {
         numOfSuggestions = numOfSuggestions - 1;
@@ -98,9 +107,9 @@ class searchbar extends React.Component {
       totalcount = totalcount - 1;
     }
 
-    //checks to see if the index is at the end of the player array
-    //if it is at the end, suptracts one from the number of suggestions so that when 1 is added
-    //in the return statement, it is neautralized
+    //Checks to see if the index is at the end of the player array
+    /*If it is at the end, subtracts one from the number of suggestions so that when 1 is added
+    in the return statement, it is neautralized*/
 
     if (num == origtotalcount - 1) {
       numOfSuggestions = numOfSuggestions - 1;
@@ -114,8 +123,9 @@ class searchbar extends React.Component {
     };
   };
 
+  //Determines how many suggestions should be displayed based on the current user input
   checkSuggestionLength = data => {
-    console.log(data.meta.total_count);
+    //console.log(data.meta.total_count);
 
     var start = 0;
     var totalcount = data.meta.total_count;
@@ -126,6 +136,7 @@ class searchbar extends React.Component {
     if (totalcount == 0) {
       return;
     }
+
     const checka = this.checkActive(
       start,
       totalcount,
@@ -136,7 +147,7 @@ class searchbar extends React.Component {
     var a = checka.num;
     totalcount = checka.count;
     numOfSuggestions = checka.suggestions;
-    console.log(a, totalcount, checka.name, numOfSuggestions);
+    //console.log(a, totalcount, checka.name, numOfSuggestions);
 
     const checkb = this.checkActive(
       a,
@@ -147,7 +158,7 @@ class searchbar extends React.Component {
     var b = checkb.num;
     totalcount = checkb.count;
     numOfSuggestions = checkb.suggestions;
-    console.log(b, totalcount, checkb.name, numOfSuggestions);
+    //console.log(b, totalcount, checkb.name, numOfSuggestions);
 
     const checkc = this.checkActive(
       b,
@@ -158,7 +169,7 @@ class searchbar extends React.Component {
     var c = checkc.num;
     totalcount = checkc.count;
     numOfSuggestions = checkc.suggestions;
-    console.log(c, totalcount, checkc.name, numOfSuggestions);
+    //console.log(c, totalcount, checkc.name, numOfSuggestions);
 
     const checkd = this.checkActive(
       c,
@@ -169,7 +180,7 @@ class searchbar extends React.Component {
     var d = checkd.num;
     totalcount = checkd.count;
     numOfSuggestions = checkd.suggestions;
-    console.log(d, totalcount, checkd.name, numOfSuggestions);
+    //console.log(d, totalcount, checkd.name, numOfSuggestions);
 
     const checke = this.checkActive(
       d,
@@ -180,11 +191,11 @@ class searchbar extends React.Component {
     var e = checke.num;
     totalcount = checke.count;
     numOfSuggestions = checke.suggestions;
-    console.log(e, totalcount, checke.name, numOfSuggestions);
+    //console.log(e, totalcount, checke.name, numOfSuggestions);
 
     this.setState({ isOpen: true });
 
-    console.log(numOfSuggestions);
+    //console.log(numOfSuggestions);
     if (numOfSuggestions >= 5) {
       this.setState({ sugg1: this.state.suggestions.data[a] });
       this.setState({ sugg2: this.state.suggestions.data[b] });
@@ -231,11 +242,10 @@ class searchbar extends React.Component {
     this.setState({ value: theValue }, this.getName);
   };
 
+  //Fills in the input box with the selected player and updates the program's search number
   handleSelection = e => {
     const thehtml = e.target.innerHTML;
     this.props.updatePSearchValue(thehtml);
-
-    console.log(e.target.className);
 
     if (e.target.className === "suggTop") {
       this.props.updatePSearchNumber(this.state.sugg1.id);
@@ -253,8 +263,8 @@ class searchbar extends React.Component {
     this.setState({ isOpen: false });
   };
 
+  //prevents submission when pressing enter
   submitHandler = e => {
-    //prevents submission when pressing enter
     e.preventDefault();
   };
 

@@ -1,3 +1,13 @@
+Hello,
+
+This is my personal NBA Stats Project. Right now it allows the user to select two NBA players
+and compare their stats for the 2018-2019 season. I am working on adding more features and continuously making improvements.
+
+Hosted On GitHub Pages
+https://kevinho1221.github.io/NBA-Stats-React-App/
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
